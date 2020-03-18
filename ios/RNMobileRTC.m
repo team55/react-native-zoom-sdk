@@ -29,16 +29,25 @@ NSString * const AuthError_toString[] = {
 
 RCT_EXPORT_MODULE()
 
+// ---------------------------------------
+//              RN initialize
+// ---------------------------------------
 RCT_EXPORT_METHOD(initialize:(NSString *)key secret:(NSString *)secret domain:(NSString *) domain resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     [[MobileRTC sharedRTC] setMobileRTCDomain:domain];
+    
     clientKey = key;
     clientSecret = secret;
+    
     _initResolver = resolve;
     _initRejecter = reject;
+
     [self sdkAuth];
 }
 
+// ---------------------------------------
+//            RN startMeeting
+// ---------------------------------------
 RCT_EXPORT_METHOD(startMeeting:(NSDictionary *) options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     MobileRTCMeetingService *ms = [[MobileRTC sharedRTC] getMeetingService];
@@ -195,7 +204,7 @@ RCT_EXPORT_METHOD(joinMeeting:(NSDictionary *) options resolver:(RCTPromiseResol
         NSLog(@"jesam");
         authService.delegate = self;
 
-        [authService logoutRTC]; //why in rnlib ??
+        // [authService logoutRTC]; //why in rnlib ??
 
         authService.clientKey = clientKey;
         authService.clientSecret = clientSecret;
@@ -210,7 +219,7 @@ RCT_EXPORT_METHOD(joinMeeting:(NSDictionary *) options resolver:(RCTPromiseResol
 {
     // NSLog(@"onMobileRTCAuthReturn");
     NSLog(@"onMobileRTCAuthReturn %d", returnValue);
-    
+
     if (returnValue != MobileRTCAuthError_Success)
     {
         NSString *errorMsg = AuthError_toString[returnValue];

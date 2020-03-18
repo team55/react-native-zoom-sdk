@@ -101,11 +101,11 @@ RCT_EXPORT_METHOD(joinMeeting:(NSDictionary *) options resolver:(RCTPromiseResol
 - (NSDictionary *)constantsToExport
 {
     return @{
-             @"UserTypes": @{
-                     @"API_USER": @(MobileRTCUserType_APIUser),
-                     @"ZOOM_USER": @(MobileRTCUserType_ZoomUser),
-                     @"SSO_USER": @(MobileRTCUserType_SSOUser),
-                     },
+            //  @"UserTypes": @{
+            //          @"API_USER": @(MobileRTCUserType_APIUser),
+            //          @"ZOOM_USER": @(MobileRTCUserType_ZoomUser),
+            //          @"SSO_USER": @(MobileRTCUserType_SSOUser),
+            //          },
              @"MeetingError": @{
                      ///network issue, please check network connection
                      @"NETWORK_ERROR": @(MobileRTCMeetError_NetworkError),

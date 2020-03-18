@@ -15,7 +15,7 @@
     "type": "git",
     "url": "https://github.com/team55/react-native-zoom-sdk"
   },
-  "author": "Ivan Vukovic <3.14wee@gmail.com>",
+  "author": "Butakov.Igor@team55.ru",
   "license": "MIT",
   "peerDependencies": {
     "react-native": "0.61.5"

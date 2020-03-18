@@ -1,6 +1,6 @@
 {
   "name": "react-native-zoom-sdk",
-  "version": "0.19.1",
+  "version": "0.0.1",
   "description": "Zoom.us SDK bridge for React Native",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "author": "Ivan Vukovic <3.14wee@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "~0.50.0"
+    "react-native": "0.61.5"
   },
   "dependencies": {
     "xcode": "^1.0.0"

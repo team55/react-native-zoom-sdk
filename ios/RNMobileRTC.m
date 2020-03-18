@@ -180,25 +180,37 @@ RCT_EXPORT_METHOD(joinMeeting:(NSDictionary *) options resolver:(RCTPromiseResol
 
 - (void)sdkAuth
 {
+    // Added Step 1: Set SDK Domain and Enable log (You may disable the log feature in release version).
+    [[MobileRTC sharedRTC] setMobileRTCDomain:kSDKDomain enableLog:YES];
 
+    // Step 2: Get Auth Service
     MobileRTCAuthService *authService = [[MobileRTC sharedRTC] getAuthService];
+
+    // Added log
+    NSLog(@"MobileRTC Version: %@", [[MobileRTC sharedRTC] mobileRTCVersion]);
+
     if (authService)
     {
+        // Step 3: Setup Auth Service
         NSLog(@"jesam");
         authService.delegate = self;
 
-        [authService logoutRTC];
+        [authService logoutRTC]; //why in rnlib ??
 
         authService.clientKey = clientKey;
         authService.clientSecret = clientSecret;
+
+        // Step 4: Call authentication function to initialize SDK
         [authService sdkAuth];
     }
 }
 
-
+// implement the onMobileRTCAuthReturn method to get the authentication result:
 - (void)onMobileRTCAuthReturn:(MobileRTCAuthError)returnValue
 {
-    NSLog(@"onMobileRTCAuthReturn");
+    // NSLog(@"onMobileRTCAuthReturn");
+    NSLog(@"onMobileRTCAuthReturn %d", returnValue);
+    
     if (returnValue != MobileRTCAuthError_Success)
     {
         NSString *errorMsg = AuthError_toString[returnValue];
